@@ -1,17 +1,19 @@
+SCRIPT_FILENAME=head.sed
+EXECUTABLE_FILENAME=head
 
-build: head
+build: $(SCRIPT_FILENAME)
 
 clean:
-	rm -f head
+	rm -f $(EXECUTABLE_FILENAME)
 
 install: build
-	cp head /usr/bin/head
-	chmod 775 /usr/bin/head
-
+	cp $(EXECUTABLE_FILENAME) /usr/bin/$(EXECUTABLE_FILENAME)
+	chmod 775 /usr/bin/$(EXECUTABLE_FILENAME)
+  
 uninstall:
-	rm /usr/bin/head
+	rm /usr/bin/$(EXECUTABLE_FILENAME)
 
-head: head.sed
-	cp head.sed head
+$(EXECUTABLE_FILENAME): $(SCRIPT_FILENAME)
+	cp $(SCRIPT_FILENAME) $(EXECUTABLE_FILENAME)
 
 .PHONY: build clean install uninstall
