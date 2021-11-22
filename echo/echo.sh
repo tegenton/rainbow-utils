@@ -1,2 +1,2 @@
 #!/bin/sh
-printf "%s" "$1"
+printf "%s" "$*"
