@@ -1,0 +1,19 @@
+SCRIPT_FILENAME=echo.sh
+EXECUTABLE_FILENAME=echo
+
+build: $(SCRIPT_FILENAME)
+
+clean:
+	rm -f $(EXECUTABLE_FILENAME)
+
+install: build
+	cp $(EXECUTABLE_FILENAME) /usr/bin/$(EXECUTABLE_FILENAME)
+	chmod 775 /usr/bin/$(EXECUTABLE_FILENAME)
+  
+uninstall:
+	rm /usr/bin/$(EXECUTABLE_FILENAME)
+
+$(EXECUTABLE_FILENAME): $(SCRIPT_FILENAME)
+	cp $(SCRIPT_FILENAME) $(EXECUTABLE_FILENAME)
+
+.PHONY: build clean install uninstall
